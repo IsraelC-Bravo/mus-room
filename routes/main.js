@@ -13,7 +13,9 @@ router.get("/", homeController.getIndex);
 router.get("/teacherProfile", ensureAuth, postController.getTeacherProfile);
 router.get("/tasksFeed", ensureAuth, postController.getTasksFeed); //check name everywhere matches "tasks"
 //need to add students in teacher's profile
-//need to add student route....
+
+//Profile and Feed("Tasks") - for Students
+router.get("/studentProfile", ensureAuth, postController.getStudentProfile);
 
 //Login
 router.get("/login", authController.getLogin);
