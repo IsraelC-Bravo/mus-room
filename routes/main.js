@@ -11,13 +11,13 @@ router.get("/", homeController.getIndex);
 
 //Profile & Feed("Tasks") - simplified for Teacher now
 router.get("/teacherProfile", ensureAuth, postController.getTeacherProfile);
-router.get("/myClasses", ensureAuth, postController.getMyClasses);
-router.get("/tasksFeed", ensureAuth, postController.getTasksFeed); //check name everywhere matches "tasks"
+//router.get("/myStudents", ensureAuth, postController.getMyStudents);
+router.get("/tasksFeed", ensureAuth, postController.getTasksFeed); //check name everywhere matches "tasksFeed"
 //need to add students in teacher's profile
 
 //Profile and Feed("Tasks") - for Students
 router.get("/studentProfile", ensureAuth, postController.getStudentProfile);
-router.get("/myTasks", ensureAuth, postController.getMyTasks);
+//need to add tasks in student's profile
 
 //Login
 router.get("/login", authController.getLogin);
