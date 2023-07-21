@@ -17,6 +17,7 @@ router.get("/tasksFeed", ensureAuth, postController.getTasksFeed); //check name 
 
 //Profile and Feed("Tasks") - for Students
 router.get("/studentProfile", ensureAuth, postController.getStudentProfile);
+router.get("/myTasks", ensureAuth, postController.getMyTasks);
 
 //Login
 router.get("/login", authController.getLogin);
