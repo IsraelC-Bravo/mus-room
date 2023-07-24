@@ -5,7 +5,7 @@ const mongoose = require("mongoose");
 const UserSchema = new mongoose.Schema({
   fisrtName: { type: String, unique: false },
   lastName: { type: String, unique: false },
-  //role: String, => to check if User is teacher/student
+  //role: { type: String, unique: false }, => to check if User is teacher/student
   userName: { type: String, unique: true },
   email: { type: String, unique: true },
   password: String,
