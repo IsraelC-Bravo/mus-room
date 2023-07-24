@@ -5,10 +5,10 @@ const mongoose = require("mongoose");
 const UserSchema = new mongoose.Schema({
   fisrtName: { type: String, unique: false },
   lastName: { type: String, unique: false },
+  //role: String, => to check if User is teacher/student
   userName: { type: String, unique: true },
   email: { type: String, unique: true },
   password: String,
-  //role: String,
 });
 
 //Password hash midleware
