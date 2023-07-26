@@ -48,7 +48,7 @@ module.exports = {
     }
   },
   //Create a new Task (Teacher Only)
-  createPost: async (req, res) => {
+  createTask: async (req, res) => {
     try {
       //Upload image to cloudinary
       const result = await cloudinary.uploader.upload(req.file.path);

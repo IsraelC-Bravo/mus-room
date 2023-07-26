@@ -61,7 +61,7 @@ exports.logout = (req, res) => {
 };
 
 //Signup Page
-exports.getSingup = (req, res) => {
+exports.getSignup = (req, res) => {
   if (req.user) {
     return res.redirect("/profile");
   }
