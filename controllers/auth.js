@@ -76,26 +76,26 @@ exports.getSignup = (req, res) => {
 
 //Post Signup info and validate params
 exports.postSignup = (req, res, next) => {
-  const validationError = [];
+  const validationErrors = [];
   //validate email
   if (!validator.isEmail(req.body.email)) {
-    validationError.push({ msg: "Please enter a valid email address." });
+    validationErrors.push({ msg: "Please enter a valid email address." });
   }
   //validate password length to 8 chars. Should add At least 1 symbol and 1 cap
   if (!validator.isLength(req.body.password, { min: 8 })) {
     validationErrors.push({
-      msg: "Passwordmust be at least 8 characters long",
+      msg: "Password must be at least 8 characters long.",
     });
   }
   if (req.body.password !== req.body.confirmPassword) {
-    validationError.push({ msg: "Passwords do not match." });
+    validationErrors.push({ msg: "Passwords do not match." });
   }
   if (validationErrors.length) {
     req.flash("errors", validationErrors);
     return res.redirect("../signup");
   }
   req.body.email = validator.normalizeEmail(req.body.email, {
-    gmail_remve_dots: false,
+    gmail_remove_dots: false,
   });
 
   //create new User... later should put more features such as: age.
