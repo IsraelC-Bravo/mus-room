@@ -22,7 +22,7 @@ require("./config/passport")(passport);
 connectDB();
 
 //Use EJS for views
-app.set(express.static("public"));
+app.set("view engine", "ejs");
 
 //Static Folder
 app.use(express.static("public"));
