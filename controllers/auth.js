@@ -19,6 +19,10 @@ exports.postLogin = (req, res, next) => {
   if (!validator.isEmail(req.body.email)) {
     validationErrors.push({ msg: "Please enter a valid email address." });
   }
+  //validate password
+  if (validationErrors.isEmpty(req.body.password)) {
+    validationErrors.push({ msg: "Password cannot be blank." });
+  }
   //if errors => redirect
   if (validationErrors.length) {
     req.flash("errors", validationErrors);
@@ -33,7 +37,7 @@ exports.postLogin = (req, res, next) => {
       return next(err);
     }
     if (!user) {
-      req.flash("error", info);
+      req.flash("errors", info);
       return res.redirect("/login");
     }
     req.logIn(user, (err) => {
@@ -56,7 +60,7 @@ exports.logout = (req, res) => {
       console.log("Error : Failed to destroy the session during logout.", err);
     }
     req.user = null;
-    req.redirect("/");
+    res.redirect("/");
   });
 };
 
