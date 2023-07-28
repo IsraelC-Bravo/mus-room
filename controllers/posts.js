@@ -8,7 +8,7 @@ module.exports = {
     try {
       //now...here I want to display students... not posts
       const posts = await Post.find({ user: req.user.id });
-      res.render("teacherProfile.ejs", { posts: posts, user: req.user });
+      res.render("profile.ejs", { posts: posts, user: req.user });
     } catch (err) {
       console.log(err);
     }
@@ -17,7 +17,7 @@ module.exports = {
   getStudentProfile: async (req, res) => {
     try {
       const posts = await Post.find({ user: req.user.id });
-      res.render("studentProfile.ejs", { posts: posts, user: req.user });
+      res.render("profile.ejs", { posts: posts, user: req.user });
     } catch (err) {
       console.log(err);
     }

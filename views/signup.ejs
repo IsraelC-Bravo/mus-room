@@ -1,16 +1,17 @@
 <%- include('partials/header') -%>
 <main class="container">
-  <div class="row justify-content-center">
+  <div class="row justify-content-center mt-5">
     <section class="col-6 mt-5">
-      <% if (locals.messages.errors) { %> <% messages.errors.forEach( el => { %>
+      <% if (locals.messages?.errors) { %> <% messages.errors.forEach( el => {
+      %>
       <div class="alert alert-danger"><%= el.msg %></div>
-      <% }) %> <% } %> <% if (locals.messages.info) { %> <%
+      <% }) %> <% } %> <% if (locals.messages?.info) { %> <%
       messages.info.forEach( el => { %>
       <div class="alert alert-info"><%= el.msg %></div>
       <% }) %> <% } %>
       <form action="/signup" method="POST">
         <div class="mb-3">
-          <label for="firstName" class="form-label">First Name</label>
+          <label for="firstName" class="form-label">First Name:</label>
           <input
             type="text"
             class="form-control"
@@ -19,7 +20,7 @@
           />
         </div>
         <div class="mb-3">
-          <label for="lastName" class="form-label">Last Name</label>
+          <label for="lastName" class="form-label">Last Name:</label>
           <input
             type="text"
             class="form-control"
@@ -28,7 +29,7 @@
           />
         </div>
         <div class="mb-3">
-          <label for="userName" class="form-label">User Name</label>
+          <label for="userName" class="form-label">User Name:</label>
           <input
             type="text"
             class="form-control"
@@ -37,8 +38,16 @@
           />
         </div>
         <div class="mb-3">
+          <label for="role" class="form-label">Role:</label>
+          <select class="form-control" id="role" name="role">
+            <option value="" selected>-Select Role-</option>
+            <option value="teacher">Teacher</option>
+            <option value="student">Student</option>
+          </select>
+        </div>
+        <div class="mb-3">
           <label for="exampleInputEmail1" class="form-label"
-            >Email address</label
+            >Email address:</label
           >
           <input
             type="email"
@@ -52,7 +61,7 @@
           </div>
         </div>
         <div class="mb-3">
-          <label for="password" class="form-label">Password</label>
+          <label for="password" class="form-label">Password:</label>
           <input
             type="password"
             class="form-control"
@@ -62,7 +71,7 @@
         </div>
         <div class="mb-3">
           <label for="confirmPassword" class="form-label"
-            >Confirm Password</label
+            >Confirm Password:</label
           >
           <input
             type="password"

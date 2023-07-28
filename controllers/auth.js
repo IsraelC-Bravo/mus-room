@@ -1,3 +1,4 @@
+const session = require("express-session");
 const passport = require("passport");
 const validator = require("validator");
 const User = require("../models/User");
@@ -20,7 +21,7 @@ exports.postLogin = (req, res, next) => {
     validationErrors.push({ msg: "Please enter a valid email address." });
   }
   //validate password
-  if (validationErrors.isEmpty(req.body.password)) {
+  if (validator.isEmpty(req.body.password)) {
     validationErrors.push({ msg: "Password cannot be blank." });
   }
   //if errors => redirect
@@ -75,7 +76,7 @@ exports.getSignup = (req, res) => {
 };
 
 //Post Signup info and validate params
-exports.postSignup = (req, res, next) => {
+exports.postSignup = async (req, res, next) => {
   const validationErrors = [];
   //validate email
   if (!validator.isEmail(req.body.email)) {
@@ -98,40 +99,41 @@ exports.postSignup = (req, res, next) => {
     gmail_remove_dots: false,
   });
 
-  //create new User... later should put more features such as: age.
-  const user = new User({
-    firstName: req.body.firstName,
-    lastName: req.body.lastName,
-    userName: req.body.userName,
-    email: req.body.email,
-    password: req.body.password,
-  });
-
   //validate User
-  User.findOne(
-    { $or: [{ email: req.body.email }, { userName: req.body.userName }] },
-    (err, existingUser) => {
+  try {
+    const existingUser = await User.findOne({
+      $or: [{ email: req.body.email }, { userName: req.body.userName }],
+    });
+
+    if (existingUser) {
+      req.flash("errors", {
+        msg: "Account with that email address or username already exists.",
+      });
+      return res.redirect("../signup");
+    }
+
+    //create new User... later should put more features such as: age.
+    const user = new User({
+      firstName: req.body.firstName,
+      lastName: req.body.lastName,
+      role: req.body.role,
+      userName: req.body.userName,
+      email: req.body.email,
+      password: req.body.password,
+    });
+
+    // Save the user to the database
+    await user.save();
+
+    // Log in the user
+    req.logIn(user, (err) => {
       if (err) {
         return next(err);
       }
-      if (existingUser) {
-        req.flash("errors", {
-          msg: "Account with that email address or username already exists.",
-        });
-        return res.redirect("../signup");
-      }
-      //save user after validation
-      user.save((err) => {
-        if (err) {
-          return next(err);
-        }
-        req.logIn(user, (err) => {
-          if (err) {
-            return next(err);
-          }
-          res.redirect("/profile");
-        });
-      });
-    }
-  );
+      res.redirect("/profile");
+    });
+  } catch (err) {
+    // Handle any errors that occurred during the process
+    return next(err);
+  }
 };
