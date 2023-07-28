@@ -48,7 +48,7 @@ exports.postLogin = (req, res, next) => {
       req.flash("success", { msg: "Success! You are logged in." });
       res.redirect(req.session.returnTo || "/profile");
     });
-  });
+  })(req, res, next);
 };
 
 //logout
