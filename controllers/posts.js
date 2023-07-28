@@ -16,8 +16,8 @@ module.exports = {
   //Student's Profile
   getStudentProfile: async (req, res) => {
     try {
-      const tasks = await Post.find({ user: req.user.id });
-      res.render("studentProfile.ejs", { tasks: tasks, user: req.user });
+      const posts = await Post.find({ user: req.user.id });
+      res.render("studentProfile.ejs", { posts: posts, user: req.user });
     } catch (err) {
       console.log(err);
     }
