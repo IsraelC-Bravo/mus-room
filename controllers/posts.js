@@ -88,11 +88,11 @@ module.exports = {
       //Find post by ID
       let post = await Post.findById({ _id: req.params.id });
       //Delete image from cloudinary
-      await cloudinary.uploader.destroy(post.cloudinaryID);
+      await cloudinary.uploader.destroy(post.cloudinaryId);
       //Delete post from database
-      await Post.removeAllListeners({ _id: req.params.id });
+      await Post.deleteOne({ _id: req.params.id });
       console.log("Deleted Post");
-      res.redirect("/teacherProfile");
+      res.redirect("/profile");
     } catch (err) {
       console.log(err);
     }
