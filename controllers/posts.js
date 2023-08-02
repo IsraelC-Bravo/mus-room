@@ -26,7 +26,7 @@ module.exports = {
   getTasksFeed: async (req, res) => {
     try {
       const posts = await Post.find().sort({ createdAt: "desc" }).lean();
-      res.render("taskFeed.ejs", { posts: posts });
+      res.render("tasksFeed.ejs", { posts: posts });
     } catch (err) {
       console.log(err);
     }
@@ -61,8 +61,8 @@ module.exports = {
         likes: 0,
         user: req.user.id,
       });
-      console.log("Post has been added!");
-      res.redirect("/teacherProfile");
+      console.log("Task has been added!");
+      res.redirect("/profile");
     } catch (err) {
       console.log(err);
     }
