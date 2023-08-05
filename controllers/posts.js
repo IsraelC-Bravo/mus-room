@@ -34,7 +34,10 @@ module.exports = {
   //Get Individual Task
   getTask: async (req, res) => {
     try {
-      const post = await Post.findById(req.params.id);
+      const post = await Post.findById(req.params.id).populate(
+        "user",
+        "userName"
+      );
       const comments = await Comment.find({ post: req.params.id })
         .sort({ createdAt: "desc" })
         .lean();
