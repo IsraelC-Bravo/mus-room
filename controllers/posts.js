@@ -39,7 +39,7 @@ module.exports = {
         "userName"
       );
       const comments = await Comment.find({ post: req.params.id })
-        .populate("user", "userName")
+        .populate("user", "userName") // Populate the user property for comments
         .sort({ createdAt: "desc" })
         .lean();
       res.render("task.ejs", {

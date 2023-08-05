@@ -42,8 +42,10 @@
       <ul>
         <% for(let i = 0; i < comments.length; i++) { %>
         <li class="justify-content-between mt-2">
+          <!-- Output the user object for debugging -->
+          <% if (comments[i].user) { %>
           <strong><%= comments[i].user.userName %>:</strong>
-          <%= comments[i].comment %>
+          <% } %> <%= comments[i].comment %>
         </li>
         <% } %>
       </ul>
