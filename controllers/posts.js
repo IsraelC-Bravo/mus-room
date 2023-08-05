@@ -39,6 +39,7 @@ module.exports = {
         "userName"
       );
       const comments = await Comment.find({ post: req.params.id })
+        .populate("user", "userName")
         .sort({ createdAt: "desc" })
         .lean();
       res.render("task.ejs", {
