@@ -7,6 +7,7 @@ const passport = require("passport");
 const methodOverride = require("method-override");
 const flash = require("flash");
 const logger = require("morgan");
+const crypto = require("crypto");
 const connectDB = require("./config/database");
 const mainRoutes = require("./routes/main");
 const postRoutes = require("./routes/posts");
