@@ -40,6 +40,17 @@
               name="file"
             />
           </div>
+          <div class="mb-3">
+            <label for="assign" class="form-label">Assign To:</label>
+            <select class="form-control" id="assign" name="assign">
+              <option value="" selected>-Select Student-</option>
+              <% for (let i = 0; i < students.length; i++) { %>
+              <option value="<%= students[i]._id %>">
+                <%= students[i].lastName %> <%= students[i].firstName %>
+              </option>
+              <% } %>
+            </select>
+          </div>
           <button type="submit" class="btn btn-primary" value="Upload">
             Submit
           </button>
@@ -47,18 +58,31 @@
         <% } %>
       </div>
     </div>
+
+    <!--Display Students list for teacher-->
     <div class="col-6">
+      <% if (isTeacher) { %>
+      <h2>Students in My Class</h2>
+      <% } %>
       <ul class="row list-unstyled">
-        <% for(var i=0; i< posts.length; i++) {%>
+        <% if (isTeacher) { %> <% for(var i = 0; i < students.length; i++) {%>
+        <li class="col-6 justify-content-between mt-5">
+          <%= students[i].userName %>
+        </li>
+        <% } %> <% } else { %> <% for(var i=0; i< posts.length; i++) {%>
         <li class="col-6 justify-content-between mt-5">
           <a href="/post/<%= posts[i]._id%>">
             <img class="img-fluid" src="<%= posts[i].image%>" />
           </a>
         </li>
-        <% } %>
+        <% } %> <% } %>
       </ul>
       <div class="row justify-content-center mt-5">
+        <% if (isTeacher) { %>
         <a class="btn btn-primary" href="/tasksFeed">See All Tasks</a>
+        <% } else { %>
+        <a class="btn btn-primary" href="/tasksFeed">All My Tasks</a>
+        <% } %>
       </div>
     </div>
   </div>

@@ -10,14 +10,9 @@ const { ensureAuth, ensureGuest } = require("../middleware/auth");
 router.get("/", homeController.getIndex);
 
 //Profile & Feed("Tasks") - simplified for Teacher now
-router.get("/profile", ensureAuth, postController.getTeacherProfile);
-//router.get("/myStudents", ensureAuth, postController.getMyStudents);
+router.get("/profile", ensureAuth, postController.getProfile);
 router.get("/tasksFeed", ensureAuth, postController.getTasksFeed); //check name everywhere matches "tasksFeed"
 //need to add students in teacher's profile
-
-//Profile and Feed("Tasks") - for Students
-router.get("/profile", ensureAuth, postController.getStudentProfile);
-//need to add tasks in student's profile
 
 //Login
 router.get("/login", authController.getLogin);

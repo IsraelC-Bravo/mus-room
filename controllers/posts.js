@@ -1,27 +1,45 @@
 const cloudinary = require("../middleware/cloudinary");
 const Post = require("../models/Post");
 const Comment = require("../models/Comment");
+const User = require("../models/User");
 
 module.exports = {
   //Teacher's Profile
-  getTeacherProfile: async (req, res) => {
+  getProfile: async (req, res) => {
     try {
+      const user = await User.findById(req.user.id);
+      let students = [];
       //now...here I want to display students... not posts
-      const posts = await Post.find({ user: req.user.id });
-      res.render("profile.ejs", { posts: posts, user: req.user });
+      if (user.role === "Teacher") {
+        //Fetch students for the teacher
+        students = await User.find({
+          classCode: user.classCode,
+          role: "Student",
+        });
+      }
+
+      if (user.role === "Teacher") {
+        res.render("profile.ejs", {
+          title: "Profile",
+          user: user,
+          students: students,
+          isTeacher: true,
+        });
+      } else if (user.role === "Student") {
+        //Fetch tasks for student
+        const posts = await Post.find({ user: req.user.id });
+        res.render("profile.ejs", {
+          title: "Profile",
+          posts: posts,
+          user: req.user,
+          isTeacher: false,
+        });
+      }
     } catch (err) {
       console.log(err);
     }
   },
-  //Student's Profile
-  getStudentProfile: async (req, res) => {
-    try {
-      const posts = await Post.find({ user: req.user.id });
-      res.render("profile.ejs", { posts: posts, user: req.user });
-    } catch (err) {
-      console.log(err);
-    }
-  },
+
   //TasksFeed
   getTasksFeed: async (req, res) => {
     try {
