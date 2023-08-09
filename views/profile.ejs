@@ -7,8 +7,12 @@
         <p><strong>Email</strong>: <%= user.email %></p>
         <p><strong>Role</strong>: <%= user.role %></p>
         <a href="/logout" class="col-3 btn btn-primary">Logout</a>
+        <% if (user.role === "Teacher") { %>
+        <p><strong>Class Code</strong>: <%= user.classCode %></p>
+        <% } %>
       </div>
       <div class="mt-5">
+        <% if (user.role === "Teacher") { %>
         <h2>Add A New Task</h2>
         <form
           action="/post/createTask"
@@ -40,6 +44,7 @@
             Submit
           </button>
         </form>
+        <% } %>
       </div>
     </div>
     <div class="col-6">

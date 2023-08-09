@@ -123,6 +123,7 @@ exports.postSignup = async (req, res, next) => {
       userName: req.body.userName,
       email: req.body.email,
       password: req.body.password,
+      classCode: req.body.classCode, //Capture and save class code.
     });
 
     // Save the user to the database
