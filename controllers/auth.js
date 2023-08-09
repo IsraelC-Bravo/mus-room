@@ -1,6 +1,7 @@
 const session = require("express-session");
 const passport = require("passport");
 const validator = require("validator");
+const crypto = require("crypto");
 const User = require("../models/User");
 
 //Login Page
@@ -102,6 +103,20 @@ exports.postSignup = async (req, res, next) => {
     gmail_remove_dots: false,
   });
 
+  //Class code generator
+  function generateClassCode() {
+    const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+    const classCodeLength = 5; //Adjust later if nedded
+    let classCode = "";
+
+    for (let i = 0; i < classCodeLength; i++) {
+      const randomIndex = Math.floor(Math.random() * characters.length);
+      classCode += characters.charAt(randomIndex);
+    }
+
+    return classCode;
+  }
+
   //validate User
   try {
     const existingUser = await User.findOne({
@@ -123,7 +138,7 @@ exports.postSignup = async (req, res, next) => {
       userName: req.body.userName,
       email: req.body.email,
       password: req.body.password,
-      classCode: req.body.classCode, //Capture and save class code.
+      classCode: req.body.role === "Teacher" ? generateClassCode() : undefined, //Capture and save class code.
     });
 
     // Save the user to the database
