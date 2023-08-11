@@ -16,10 +16,8 @@
         <!--Display Class Joined for students-->
         <% if (user.role === "Student") { %> <% if (user.classCode &&
         teacherName) { %>
-        <p>
-          <strong>Class Joined</strong>: <%= user.classCode %> (Teacher: <%=
-          teacherName %>)
-        </p>
+        <p><strong>Class Joined</strong>: <%= user.classCode %></p>
+        <p><strong>Teacher</strong>: <%= teacherName %></p>
         <% } else { %>
 
         <!--Join a Class Button-->
@@ -28,16 +26,16 @@
             <label for="joinClass" class="form-label">
               <strong>Join a Class:</strong>
             </label>
-            <input
-              type="text"
-              class="form-control"
-              id="joinClass"
-              name="joinClass"
-              placeholder="Enter Class Code"
-            />
-            <button type="submit" class="btn btn-primary" value="Join">
-              Join
-            </button>
+            <div class="input-group custom-input-group">
+              <input
+                type="text"
+                class="form-control"
+                id="joinClass"
+                name="joinClass"
+                placeholder="Enter Class Code"
+              />
+              <button type="submit" class="btn btn-primary">Join</button>
+            </div>
           </div>
         </form>
         <% } %> <% } %>

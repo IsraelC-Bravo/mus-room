@@ -18,7 +18,7 @@ module.exports = {
           role: "Teacher",
         });
         if (teacher) {
-          teacherName = `${teacher.firstName} ${teacher.lastName}`;
+          teacherName = `${teacher.lastName} ${teacher.firstName} `;
         }
       }
 
