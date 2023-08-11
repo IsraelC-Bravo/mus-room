@@ -39,6 +39,35 @@ module.exports = {
       console.log(err);
     }
   },
+  //Join a Class
+  joinClass: async (req, res) => {
+    try {
+      const { joinClass } = req.body;
+      const student = req.user; //for authenticated students
+
+      //Find the teacher's class with enetered class code
+      const teacher = await User.findOne({
+        classCode: joinClass,
+        role: "Teacher",
+      });
+
+      if (!teacher) {
+        req.flash("error", "Invalid class code. Please try again.");
+        return res.redirect("/profile");
+      }
+
+      //Add student to teacher's class
+      student.classCode = joinClass;
+      await student.save();
+
+      req.flash("success", "You have successfully joined the class!");
+      res.redirect("/profile");
+    } catch (err) {
+      console.log(err);
+      req.flash("error", "An error ocurred. Please try again later.");
+      res.redirect("/profile");
+    }
+  },
 
   //TasksFeed
   getTasksFeed: async (req, res) => {

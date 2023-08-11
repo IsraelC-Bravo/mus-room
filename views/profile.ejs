@@ -3,11 +3,34 @@
   <div class="row mt-5">
     <div class="col-6">
       <div>
+        <!--DISPLAY USER'S INFO-->
         <p><strong>User Name</strong>: <%= user.userName %></p>
         <p><strong>Email</strong>: <%= user.email %></p>
         <p><strong>Role</strong>: <%= user.role %></p>
+        <!--Class Code-->
         <% if (user.role === "Teacher") { %>
         <p><strong>Class Code</strong>: <%= user.classCode %></p>
+        <% } %>
+        <!--Join a Class Button-->
+        <% if (user.role === "Student") { %>
+        <form action="/post/joinClass" method="POST">
+          <div class="mb-3">
+            <label for="joinClass" class="form-label">
+              <strong>Join a Class:</strong>
+            </label>
+            <input
+              type="text"
+              class="form-control"
+              id="joinClass"
+              name="joinClass"
+              placeholder="Enter Class Code"
+            />
+
+            <button type="submit" class="btn btn-primary" value="Join">
+              Join
+            </button>
+          </div>
+        </form>
         <% } %>
         <a href="/logout" class="col-3 btn btn-primary">Logout</a>
       </div>

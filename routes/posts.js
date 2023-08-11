@@ -17,6 +17,8 @@ router.post("/createTask", upload.single("file"), postsController.createTask);
 // );
 //for submitting work
 
+router.post("/joinClass", postsController.joinClass);
+
 router.put("/likeTask/:id", postsController.likeTask); //later, change this to complete task
 
 //router.put("/completedTask/:id", postController.completedTask) //mark them completed after work has been sumbitted
