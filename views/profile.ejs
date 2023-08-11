@@ -14,10 +14,11 @@
         <% } %>
 
         <!--Display Class Joined for students-->
-        <% if (user.role === "Student") { %> <% if (user.classCode) { %>
+        <% if (user.role === "Student") { %> <% if (user.classCode &&
+        teacherName) { %>
         <p>
           <strong>Class Joined</strong>: <%= user.classCode %> (Teacher: <%=
-          user.teacherName %>)
+          teacherName %>)
         </p>
         <% } else { %>
 

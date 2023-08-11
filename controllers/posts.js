@@ -8,10 +8,22 @@ module.exports = {
   getProfile: async (req, res) => {
     try {
       const user = await User.findById(req.user.id);
+      let teacherName = "";
       let students = [];
-      //now...here I want to display students... not posts
+
+      //Fetch teacher's information if user is a "student"
+      if (user.role === "Student" && user.classCode) {
+        const teacher = await User.findOne({
+          classCode: user.classCode,
+          role: "Teacher",
+        });
+        if (teacher) {
+          teacherName = `${teacher.firstName} ${teacher.lastName}`;
+        }
+      }
+
+      //Fetch students for the teacher if user is a "teacher"
       if (user.role === "Teacher") {
-        //Fetch students for the teacher
         students = await User.find({
           classCode: user.classCode,
           role: "Student",
@@ -25,14 +37,16 @@ module.exports = {
           students: students,
           isTeacher: true,
         });
+
+        //Fetch tasks for student if user is "student"
       } else if (user.role === "Student") {
-        //Fetch tasks for student
         const posts = await Post.find({ user: req.user.id });
         res.render("profile.ejs", {
           title: "Profile",
           posts: posts,
           user: req.user,
           isTeacher: false,
+          teacherName: teacherName,
         });
       }
     } catch (err) {
