@@ -48,6 +48,9 @@ module.exports = {
         }
       }
 
+      //Fetch tasks assigned to the student
+      const posts = await Post.find({ user: userId });
+
       //Determine if the user is a teacher
       const isTeacher = user.role === "Teacher";
 
@@ -62,6 +65,7 @@ module.exports = {
         user: user,
         isTeacher: isTeacher,
         teacherName: teacherName,
+        posts: posts,
         assignedTasks: assignedTasks, //pass this only for teacher profiles
       });
     } catch (err) {

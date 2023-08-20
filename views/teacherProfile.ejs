@@ -2,23 +2,19 @@
 <div class="container">
   <div class="row mt-5">
     <div class="col-6">
+      <!--DISPLAY USER'S INFO-->
       <div>
-        <!--DISPLAY USER'S INFO-->
         <p><strong>User Name</strong>: <%= user.userName %></p>
         <p><strong>Email</strong>: <%= user.email %></p>
         <p><strong>Role</strong>: <%= user.role %></p>
-
         <!--Class Code-->
-        <% if (user.role === "Teacher") { %>
         <p><strong>Class Code</strong>: <%= user.classCode %></p>
-        <% } %>
-
         <!--LOGOUT-->
         <a href="/logout" class="col-3 btn btn-primary">Logout</a>
       </div>
+
       <!--ADD Tasks for Teachers-->
       <div class="mt-5">
-        <% if (user.role === "Teacher") { %>
         <h2>Add A New Task</h2>
         <form
           action="/post/createTask"
@@ -61,12 +57,11 @@
             Submit
           </button>
         </form>
-        <% } %>
       </div>
     </div>
 
+    <!--Fetch Students-->
     <div class="col-6">
-      <% if (isTeacher) { %>
       <h2>Students in My Class</h2>
       <ul class="row list-unstyled">
         <% for(var i = 0; i < students.length; i++) {%>
@@ -87,7 +82,6 @@
         <a class="btn btn-primary" href="/tasksFeed">See All Tasks</a>
       </div>
 
-      <% } %>
       <!--Display Assigned Tasks for teachers-->
       <% if (isTeacher) { %>
       <ul class="row list-unstyled">
