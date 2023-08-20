@@ -34,11 +34,14 @@
         <!--LOGOUT-->
         <a href="/logout" class="col-3 btn btn-primary">Logout</a>
       </div>
+    </div>
 
-      <!-- Display Tasks for students -->
+    <!-- Display Tasks for students -->
+    <div class="col-6">
       <ul class="row list-unstyled">
         <% for(var i = 0; i < posts.length; i++) {%>
         <li class="col-6 justify-content-between mt-5">
+          <p>Task ID: <%= posts[i]._id %></p>
           <a href="/post/<%= posts[i]._id%>">
             <img class="img-fluid" src="<%= posts[i].image%>" />
           </a>

@@ -147,7 +147,7 @@ module.exports = {
         user: req.user.id,
       });
       console.log("Task has been added!");
-      res.redirect("/profile");
+      res.redirect("/profile/teacher");
     } catch (err) {
       console.log(err);
     }
