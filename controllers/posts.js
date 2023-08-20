@@ -58,7 +58,30 @@ module.exports = {
     try {
       const userId = req.params.userId;
       const user = await User.findById(userId);
-      res.render("profile.ejs", { title: "Profile", user: user });
+
+      //Initialize teacherName variable
+      let teacherName = "";
+
+      //Fetch teacher's information if user is a student
+      if (user.role === "Student" && user.classCode) {
+        const teacher = await User.findOne({
+          classCode: user.classCode,
+          role: "Teacher",
+        });
+        if (teacher) {
+          teacherName = `${teacher.lastName} ${teacher.firstName}`;
+        }
+      }
+
+      //Determine if the user is a teacher
+      const isTeacher = user.role === "Teacher";
+
+      res.render("profile.ejs", {
+        title: "Profile",
+        user: user,
+        isTeacher: isTeacher,
+        teacherName: teacherName,
+      });
     } catch (err) {
       console.log(err);
     }

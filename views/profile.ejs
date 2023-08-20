@@ -92,31 +92,41 @@
     </div>
 
     <div class="col-6">
-      <!--Display Students list for teacher-->
       <% if (isTeacher) { %>
       <h2>Students in My Class</h2>
-      <% } %>
       <ul class="row list-unstyled">
-        <% if (isTeacher) { %> <% for(var i = 0; i < students.length; i++) {%>
+        <% for(var i = 0; i < students.length; i++) {%>
         <li class="col-6 justify-content-between mt-5">
-          <%= students[i].userName %>
+          <a href="/profile/<%= students[i]._id %>">
+            <img
+              src="/public/imgs/userIcon.png"
+              alt="User Icon"
+              width="200"
+              height="200"
+            />
+            <p><%= students[i].userName %></p>
+          </a>
         </li>
-        <!--Display Tasks for students-->
-        <% } %> <% } else { %> <% for(var i=0; i< posts.length; i++) {%>
+        <% } %>
+      </ul>
+      <div class="row justify-content-center mt-5">
+        <a class="btn btn-primary" href="/tasksFeed">See All Tasks</a>
+      </div>
+      <% } else { %>
+      <!-- Display Tasks for students -->
+      <ul class="row list-unstyled">
+        <% for(var i=0; i< posts.length; i++) {%>
         <li class="col-6 justify-content-between mt-5">
           <a href="/post/<%= posts[i]._id%>">
             <img class="img-fluid" src="<%= posts[i].image%>" />
           </a>
         </li>
-        <% } %> <% } %>
+        <% } %>
       </ul>
       <div class="row justify-content-center mt-5">
-        <% if (isTeacher) { %>
-        <a class="btn btn-primary" href="/tasksFeed">See All Tasks</a>
-        <% } else { %>
         <a class="btn btn-primary" href="/tasksFeed">All My Tasks</a>
-        <% } %>
       </div>
+      <% } %>
     </div>
   </div>
 </div>
