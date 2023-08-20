@@ -53,6 +53,17 @@ module.exports = {
       console.log(err);
     }
   },
+  //get Profile by ID to get access as a teacher
+  getProfileById: async (req, res) => {
+    try {
+      const userId = req.params.userId;
+      const user = await User.findById(userId);
+      res.render("profile.ejs", { title: "Profile", user: user });
+    } catch (err) {
+      console.log(err);
+    }
+  },
+
   //Join a Class
   joinClass: async (req, res) => {
     try {

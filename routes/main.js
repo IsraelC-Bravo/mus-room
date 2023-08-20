@@ -11,6 +11,8 @@ router.get("/", homeController.getIndex);
 
 //Profile & Feed("Tasks") - simplified for Teacher now
 router.get("/profile", ensureAuth, postController.getProfile);
+router.get("/profile/:userId", postController.getProfileById);
+//to get access to students profile only if teacher.
 router.get("/tasksFeed", ensureAuth, postController.getTasksFeed); //check name everywhere matches "tasksFeed"
 //need to add students in teacher's profile
 
