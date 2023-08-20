@@ -7,7 +7,11 @@ const User = require("../models/User");
 //Login Page
 exports.getLogin = (req, res) => {
   if (req.user) {
-    return res.redirect("/profile");
+    if (req.user.role === "Teacher") {
+      return res.redirect("/profile/teacher");
+    } else if (req.user.role === "Student") {
+      return res.redirect(`/profile/student/${req.user._id}`);
+    }
   }
   res.render("login", {
     title: "Login",
@@ -47,7 +51,14 @@ exports.postLogin = (req, res, next) => {
         return next(err);
       }
       req.flash("success", { msg: "Success! You are logged in." });
-      res.redirect(req.session.returnTo || "/profile");
+      if (user.role === "Teacher") {
+        return res.redirect("/profile/teacher");
+      } else if (user.role === "Student") {
+        return res.redirect(`/profile/student/${user._id}`);
+      } else {
+        // Handle other roles as needed
+        return res.redirect("/"); // Redirect to a default page if needed
+      }
     });
   })(req, res, next);
 };
