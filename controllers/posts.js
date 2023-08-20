@@ -76,11 +76,18 @@ module.exports = {
       //Determine if the user is a teacher
       const isTeacher = user.role === "Teacher";
 
+      //Fetch tasks asigned to the student by the teacher
+      let assignedTasks = [];
+      if (isTeacher) {
+        assignedTasks = await Post.find({ user: userId });
+      }
+
       res.render("profile.ejs", {
         title: "Profile",
         user: user,
         isTeacher: isTeacher,
         teacherName: teacherName,
+        assignedTasks: assignedTasks,
       });
     } catch (err) {
       console.log(err);
