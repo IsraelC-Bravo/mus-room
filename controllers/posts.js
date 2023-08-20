@@ -4,25 +4,12 @@ const Comment = require("../models/Comment");
 const User = require("../models/User");
 
 module.exports = {
-  //Teacher's Profile
-  getProfile: async (req, res) => {
+  //For Teacher's Profile
+  getTeacherProfile: async (req, res) => {
     try {
       const user = await User.findById(req.user.id);
-      let teacherName = "";
-      let students = [];
-
-      //Fetch teacher's information if user is a "student"
-      if (user.role === "Student" && user.classCode) {
-        const teacher = await User.findOne({
-          classCode: user.classCode,
-          role: "Teacher",
-        });
-        if (teacher) {
-          teacherName = `${teacher.lastName} ${teacher.firstName} `;
-        }
-      }
-
       //Fetch students for the teacher if user is a "teacher"
+      let students = [];
       if (user.role === "Teacher") {
         students = await User.find({
           classCode: user.classCode,
@@ -30,31 +17,19 @@ module.exports = {
         });
       }
 
-      if (user.role === "Teacher") {
-        res.render("profile.ejs", {
-          title: "Profile",
-          user: user,
-          students: students,
-          isTeacher: true,
-        });
-
-        //Fetch tasks for student if user is "student"
-      } else if (user.role === "Student") {
-        const posts = await Post.find({ user: req.user.id });
-        res.render("profile.ejs", {
-          title: "Profile",
-          posts: posts,
-          user: req.user,
-          isTeacher: false,
-          teacherName: teacherName,
-        });
-      }
+      res.render("teacherProfile.ejs", {
+        title: "Teacher Profile",
+        user: user,
+        students: students,
+        isTeacher: false,
+      });
     } catch (err) {
       console.log(err);
     }
   },
-  //get Profile by ID to get access as a teacher
-  getProfileById: async (req, res) => {
+
+  //For student's profile
+  getStudentProfile: async (req, res) => {
     try {
       const userId = req.params.userId;
       const user = await User.findById(userId);
@@ -82,8 +57,8 @@ module.exports = {
         assignedTasks = await Post.find({ user: userId });
       }
 
-      res.render("profile.ejs", {
-        title: "Profile",
+      res.render("studentProfile.ejs", {
+        title: "Student Profile",
         user: user,
         isTeacher: isTeacher,
         teacherName: teacherName,
