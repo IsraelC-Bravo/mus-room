@@ -127,6 +127,21 @@
         <a class="btn btn-primary" href="/tasksFeed">All My Tasks</a>
       </div>
       <% } %>
+      <!--Display Assigned Tasks for teachers-->
+      <% if (isTeacher) { %>
+      <ul class="row list-unstyled">
+        <% for (var i = 0; i < assignedTasks.length; i++) { %>
+        <li class="col-6 justify-content-between mt-5">
+          <a href="/post/<%= assignedTasks[i]._id %>">
+            <img class="img-fluid" src="<%= assignedTasks[i].image %>" />
+          </a>
+        </li>
+        <% } %>
+      </ul>
+      <div class="row justify-content-center mt-5">
+        <a class="btn btn-primary" href="/tasksFeed">See All Tasks</a>
+      </div>
+      <% } %>
     </div>
   </div>
 </div>

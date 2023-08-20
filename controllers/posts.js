@@ -87,7 +87,7 @@ module.exports = {
         user: user,
         isTeacher: isTeacher,
         teacherName: teacherName,
-        assignedTasks: assignedTasks,
+        assignedTasks: assignedTasks, //pass this only for teacher profiles
       });
     } catch (err) {
       console.log(err);
