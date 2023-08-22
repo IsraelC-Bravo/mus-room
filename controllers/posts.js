@@ -30,6 +30,7 @@ module.exports = {
 
   //For student's profile
   getStudentProfile: async (req, res) => {
+    console.log("Reached getStudentProfile route");
     try {
       const userId = req.params.userId;
       const user = await User.findById(userId);

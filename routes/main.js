@@ -9,14 +9,15 @@ const { ensureAuth, ensureGuest } = require("../middleware/auth");
 //Login-Signup Page
 router.get("/", homeController.getIndex);
 
-//Route for teacher's profile
-router.get("/profile/teacher", ensureAuth, postController.getTeacherProfile);
 //Route for student's profile
 router.get(
   "/profile/student/:userId",
   ensureAuth,
   postController.getStudentProfile
 );
+
+//Route for teacher's profile
+router.get("/profile/teacher", ensureAuth, postController.getTeacherProfile);
 
 //Tasks Feed for teacher
 router.get("/tasksFeed", ensureAuth, postController.getTasksFeed); //check name
