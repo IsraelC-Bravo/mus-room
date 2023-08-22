@@ -21,7 +21,7 @@ module.exports = {
         title: "Teacher Profile",
         user: user,
         students: students,
-        isTeacher: false,
+        isTeacher: true,
       });
     } catch (err) {
       console.log(err);
