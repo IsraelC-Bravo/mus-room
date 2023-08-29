@@ -33,7 +33,9 @@ module.exports = {
     console.log("Reached getStudentProfile route");
     try {
       const userId = req.params.userId;
+      console.log(userId);
       const user = await User.findById(userId);
+      console.log(user);
 
       //Initialize teacherName variable
       let teacherName = "";
@@ -51,15 +53,13 @@ module.exports = {
 
       //Fetch tasks assigned to the student
       const posts = await Post.find({ user: userId });
+      console.log(posts);
 
       //Determine if the user is a teacher
       const isTeacher = user.role === "Teacher";
 
       //Fetch tasks asigned to the student by the teacher
-      let assignedTasks = [];
-      if (isTeacher) {
-        assignedTasks = await Post.find({ user: userId });
-      }
+      let assignedTasks = await Post.find({ assignedTo: userId });
 
       res.render("studentProfile.ejs", {
         title: "Student Profile",

@@ -63,11 +63,12 @@
     <!--Fetch Students-->
     <div class="col-6">
       <h2>Students in My Class</h2>
-      <ul class="row list-unstyled studentsUserName">
+      <ul class="row list-unstyled studentsDisplay">
         <% for(let i = 0; i < students.length; i++) {%>
         <li class="col-6 justify-content-between mt-3">
           <a href="/profile/student/<%= students[i]._id %>">
             <img
+              class="image-fluid"
               src="/imgs/user-icon.png"
               alt="User Icon"
               width="100px"

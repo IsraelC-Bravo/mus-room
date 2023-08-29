@@ -39,12 +39,17 @@
     <!-- Display Tasks for students -->
     <div class="col-6">
       <h2>Asigned Tasks</h2>
-      <ul class="row list-unstyled">
+      <ul class="row list-unstyled tasksDisplay">
         <% for (let i = 0; i < assignedTasks.length; i++) { %>
         <li class="col-6 justify-content-between mt-5">
           <a href="/post/<%= assignedTasks[i]._id %>">
-            <img class="img-fluid" src="<%= assignedTasks[i].image %>" />
+            <img
+              class="img-fluid"
+              src="<%= assignedTasks[i].image %>"
+              alt="Task Image"
+            />
           </a>
+          <p><strong>Assigned by: </strong><%= teacherName %></p>
         </li>
         <% } %>
       </ul>
