@@ -63,15 +63,15 @@
     <!--Fetch Students-->
     <div class="col-6">
       <h2>Students in My Class</h2>
-      <ul class="row list-unstyled">
+      <ul class="row list-unstyled studentsUserName">
         <% for(let i = 0; i < students.length; i++) {%>
-        <li class="col-6 justify-content-between mt-5">
+        <li class="col-6 justify-content-between mt-3">
           <a href="/profile/student/<%= students[i]._id %>">
             <img
-              src="/public/imgs/user-icon.png"
+              src="/imgs/user-icon.png"
               alt="User Icon"
-              width="200"
-              height="200"
+              width="100px"
+              height="100px"
             />
             <p><%= students[i].userName %></p>
           </a>

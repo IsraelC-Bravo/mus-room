@@ -138,6 +138,9 @@ module.exports = {
       //Upload image to cloudinary
       const result = await cloudinary.uploader.upload(req.file.path);
 
+      //Assuming I have a "assignedTo" field in my post schema...
+      const assignedTo = req.body.assign;
+
       await Post.create({
         title: req.body.title,
         image: result.secure_url,
@@ -145,6 +148,7 @@ module.exports = {
         caption: req.body.caption,
         likes: 0,
         user: req.user.id,
+        assignedTo: assignedTo,
       });
       console.log("Task has been added!");
       res.redirect("/profile/teacher");
