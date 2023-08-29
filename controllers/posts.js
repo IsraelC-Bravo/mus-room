@@ -87,7 +87,7 @@ module.exports = {
 
       if (!teacher) {
         req.flash("error", "Invalid class code. Please try again.");
-        return res.redirect("/profile");
+        return res.redirect(`/profile/student/${req.user._id}`);
       }
 
       //Add student to teacher's class
@@ -95,11 +95,11 @@ module.exports = {
       await student.save();
 
       req.flash("success", "You have successfully joined the class!");
-      res.redirect("/profile");
+      res.redirect(`/profile/student/${req.user._id}`);
     } catch (err) {
       console.log(err);
       req.flash("error", "An error ocurred. Please try again later.");
-      res.redirect("/profile");
+      res.redirect(`/profile/student/${req.user._id}`);
     }
   },
 
