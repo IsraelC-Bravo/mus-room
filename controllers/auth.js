@@ -83,7 +83,11 @@ exports.logout = (req, res) => {
 //Signup Page
 exports.getSignup = (req, res) => {
   if (req.user) {
-    return res.redirect("/profile");
+    if (req.user.role === "Teacher") {
+      return res.redirect("/profile/teacher");
+    } else if (req.user.role === "Student") {
+      return res.redirect(`/profile/student/${req.user._id}`);
+    }
   }
   res.render("signup", {
     title: "Create Account",
@@ -160,7 +164,14 @@ exports.postSignup = async (req, res, next) => {
       if (err) {
         return next(err);
       }
-      res.redirect("/profile");
+      if (user.role === "Teacher") {
+        return res.redirect("/profile/teacher");
+      } else if (user.role === "Student") {
+        return res.redirect(`/profile/student/${user._id}`);
+      } else {
+        // Handle other roles as needed
+        return res.redirect("/"); // Redirect to a default page if needed
+      }
     });
   } catch (err) {
     // Handle any errors that occurred during the process
