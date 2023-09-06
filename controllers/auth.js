@@ -51,14 +51,18 @@ exports.postLogin = (req, res, next) => {
         return next(err);
       }
       req.flash("success", { msg: "Success! You are logged in." });
+      let redirectPath;
+
       if (user.role === "Teacher") {
-        return res.redirect("/profile/teacher");
+        redirectPath = "/profile/teacher";
       } else if (user.role === "Student") {
-        return res.redirect(`/profile/student/${user._id}`);
+        redirectPath = `/profile/student/${user._id}`;
       } else {
         // Handle other roles as needed
-        return res.redirect("/"); // Redirect to a default page if needed
+        redirectPath = "/"; // Redirect to a default page if needed
       }
+
+      return res.redirect(redirectPath);
     });
   })(req, res, next);
 };
