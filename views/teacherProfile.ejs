@@ -1,88 +1,104 @@
 <%- include('partials/header') -%>
-<div class="container">
-  <div class="row mt-5">
-    <div class="col-6">
-      <!--DISPLAY USER'S INFO-->
-      <div>
-        <p><strong>User Name</strong>: <%= user.userName %></p>
-        <p><strong>Email</strong>: <%= user.email %></p>
-        <p><strong>Role</strong>: <%= user.role %></p>
-        <!--Class Code-->
-        <p><strong>Class Code</strong>: <%= user.classCode %></p>
-        <!--LOGOUT-->
-        <a href="/logout" class="col-3 btn btn-primary">Logout</a>
-      </div>
+<div class="container-fluid">
+  <div class="row">
+    <!--SideBar-->
+    <%- include('partials/sidebar') -%>
 
-      <!--ADD Tasks for Teachers-->
-      <div class="mt-5">
-        <h2>Add A New Task</h2>
-        <form
-          action="/post/createTask"
-          enctype="multipart/form-data"
-          method="POST"
-        >
-          <div class="mb-3">
-            <label for="title" class="form-label">Topic:</label>
-            <input type="text" class="form-control" id="title" name="title" />
-          </div>
-          <div class="mb-3">
-            <label for="caption" class="form-label">Instructions:</label>
-            <textarea
-              class="form-control"
-              id="caption"
-              name="caption"
-            ></textarea>
-          </div>
-          <div class="mb-3">
-            <label for="imgUpload" class="form-label">File</label>
-            <input
-              type="file"
-              class="form-control"
-              id="imageUpload"
-              name="file"
-            />
-          </div>
-          <div class="mb-3">
-            <label for="assign" class="form-label">Assign To:</label>
-            <select class="form-control" id="assign" name="assign">
-              <option value="" selected>-Select Student-</option>
-              <% for (let i = 0; i < students.length; i++) { %>
-              <option value="<%= students[i]._id %>">
-                <%= students[i].lastName %> <%= students[i].firstName %>
-              </option>
-              <% } %>
-            </select>
-          </div>
-          <button type="submit" class="btn btn-primary" value="Upload">
-            Submit
-          </button>
-        </form>
-      </div>
-    </div>
+    <!--Main Content-->
+    <main class="col-md-9 ms-sm-auto col-lg10-px-md-4 mt-4">
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+            <!--DISPLAY USER'S INFO-->
+            <div>
+              <p><strong>User Name</strong>: <%= user.userName %></p>
+              <p><strong>Email</strong>: <%= user.email %></p>
+              <p><strong>Role</strong>: <%= user.role %></p>
+              <!--Class Code-->
+              <p><strong>Class Code</strong>: <%= user.classCode %></p>
+              <!--LOGOUT-->
+              <a href="/logout" class="col-3 btn btn-primary">Logout</a>
+            </div>
 
-    <!--Fetch Students-->
-    <div class="col-6">
-      <h2>Students in My Class</h2>
-      <ul class="row list-unstyled studentsDisplay">
-        <% for(let i = 0; i < students.length; i++) {%>
-        <li class="col-6 justify-content-between mt-3">
-          <a href="/profile/student/<%= students[i]._id %>">
-            <img
-              class="image-fluid"
-              src="/imgs/user-icon.png"
-              alt="User Icon"
-              width="100px"
-              height="100px"
-            />
-            <p><%= students[i].userName %></p>
-          </a>
-        </li>
-        <% } %>
-      </ul>
-      <div class="row justify-content-center mt-5">
-        <a class="btn btn-primary" href="/tasksFeed">See All Tasks</a>
+            <!--Fetch Students-->
+            <div class="col-6">
+              <h3>Students in My Class</h3>
+              <ul class="row list-unstyled studentsDisplay">
+                <% for(let i = 0; i < students.length; i++) {%>
+                <li class="col-6 justify-content-between mt-3">
+                  <a href="/profile/student/<%= students[i]._id %>">
+                    <img
+                      class="image-fluid"
+                      src="/imgs/user-icon.png"
+                      alt="User Icon"
+                      width="100px"
+                      height="100px"
+                    />
+                    <p><%= students[i].userName %></p>
+                  </a>
+                </li>
+                <% } %>
+              </ul>
+              <div class="row justify-content-center mt-5">
+                <a class="btn btn-primary" href="/tasksFeed">See All Tasks</a>
+              </div>
+            </div>
+
+            <!--ADD Tasks for Teachers-->
+            <div class="mt-5">
+              <h2>Add A New Task</h2>
+              <form
+                action="/post/createTask"
+                enctype="multipart/form-data"
+                method="POST"
+              >
+                <div class="mb-3">
+                  <label for="title" class="form-label">Topic:</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="title"
+                    name="title"
+                  />
+                </div>
+                <div class="mb-3">
+                  <label for="caption" class="form-label">Instructions:</label>
+                  <textarea
+                    class="form-control"
+                    id="caption"
+                    name="caption"
+                  ></textarea>
+                </div>
+                <div class="mb-3">
+                  <label for="imgUpload" class="form-label">File</label>
+                  <input
+                    type="file"
+                    class="form-control"
+                    id="imageUpload"
+                    name="file"
+                  />
+                </div>
+                <div class="mb-3">
+                  <label for="assign" class="form-label">Assign To:</label>
+                  <select class="form-control" id="assign" name="assign">
+                    <option value="" selected>-Select Student-</option>
+                    <% for (let i = 0; i < students.length; i++) { %>
+                    <option value="<%= students[i]._id %>">
+                      <%= students[i].lastName %> <%= students[i].firstName %>
+                    </option>
+                    <% } %>
+                  </select>
+                </div>
+                <button type="submit" class="btn btn-primary" value="Upload">
+                  Submit
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
+    </main>
   </div>
 </div>
+
 <%- include('partials/footer') -%>
