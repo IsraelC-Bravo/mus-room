@@ -3,6 +3,18 @@ body {
   background-color: rgba(250, 250, 210, 0.49);
 }
 
+/* BUTTONS */
+.btn,
+.btn-primary {
+  background-color: coral;
+  border: none;
+}
+
+.btn:hover,
+.btn-primary:hover {
+  background-color: chocolate;
+}
+
 .custom-input-group {
   max-width: 250px;
 }
