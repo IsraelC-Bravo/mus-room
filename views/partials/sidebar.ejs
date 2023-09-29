@@ -1,14 +1,4 @@
 <!-- sidebar.ejs -->
-<button
-  class="btn btn-dark d-md-none"
-  type="button"
-  data-bs-toggle="collapse"
-  data-bs-target="#sidebar"
-  aria-expanded="false"
-  aria-controls="sidebar"
->
-  <span class="navbar-toggler-icon"></span>
-</button>
 
 <nav id="sidebar" class="col-md-3 col-lg-2 d-md-block sidebar collapse">
   <div class="position-sticky">
@@ -45,3 +35,16 @@
     </ul>
   </div>
 </nav>
+
+<!-- Add a button to toggle the sidebar -->
+
+<button
+  class="btn btn-dark d-md-block d-lg-none sidebar-toggle"
+  type="button"
+  data-bs-toggle="collapse"
+  data-bs-target="#sidebarCollapse"
+  aria-expanded="false"
+  aria-controls="sidebarCollapse"
+>
+  <span class="navbar-toggler-icon"></span>
+</button>
