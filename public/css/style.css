@@ -3,6 +3,14 @@ body {
   background-color: rgba(250, 250, 210, 0.49);
 }
 
+#sidebar {
+  background-color: rgba(252, 252, 234, 0.49);
+  border-right: 1px solid lightgray;
+}
+main {
+  padding-bottom: 20px;
+}
+
 /* BUTTONS */
 .btn,
 .btn-primary {
