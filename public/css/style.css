@@ -3,12 +3,27 @@ body {
   background-color: rgba(250, 250, 210, 0.49);
 }
 
+main {
+  padding-bottom: 20px;
+}
+
+/* SIDEBAR */
+
 #sidebar {
   background-color: rgba(252, 252, 234, 0.49);
   border-right: 1px solid lightgray;
 }
-main {
-  padding-bottom: 20px;
+
+/* Custom CSS to style the toggle button */
+.sidebar-toggle {
+  max-width: 40px;
+  margin-left: 10px;
+  margin-top: 10px;
+}
+
+/* Custom CSS to collapse the UL when the button is clicked */
+.collapse.collapsed .nav {
+  display: none;
 }
 
 /* BUTTONS */
