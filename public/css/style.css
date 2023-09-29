@@ -22,9 +22,6 @@ main {
 }
 
 /* Custom CSS to collapse the UL when the button is clicked */
-.collapse.collapsed .nav {
-  display: none;
-}
 
 /* BUTTONS */
 .btn,

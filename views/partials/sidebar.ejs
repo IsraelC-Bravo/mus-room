@@ -1,54 +1,38 @@
 <!-- sidebar.ejs -->
 
-<!-- Add a button to toggle the sidebar -->
-<button
-  class="btn btn-dark d-md-block d-lg-none sidebar-toggle"
-  type="button"
-  data-bs-toggle="collapse"
-  data-bs-target="#sidebar"
-  aria-expanded="false"
-  aria-controls="sidebar"
->
-  <span class="navbar-toggler-icon"></span>
-</button>
-
-<div class="col-md-3 col-lg-2 d-md-block collapse">
-  <!-- Content that should always be visible -->
-  <div class="text-center mt-3">
-    <img src="/imgs/MusRoom.png" alt="logo" width="100px" />
-    <h3>MusRoom</h3>
-    <span>Private Lessons Workshop</span>
-  </div>
-  <hr />
-
-  <!-- Sidebar Navigation -->
-  <nav id="sidebar">
-    <div class="position-sticky">
-      <ul class="nav flex-column">
-        <!-- Sidebar items -->
-        <li class="nav-item">
-          <a class="nav-link" href="/profile/teacher"> My Profile </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/tasksFeed"> All Tasks </a>
-        </li>
-        <!-- Add more sidebar items as needed -->
-        <li class="nav-item">
-          <a class="nav-link" href="#"> My Agenda </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#"> My Students </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#"> Tuner </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#"> Metronome </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#"> Documents </a>
-        </li>
-      </ul>
+<!-- Sidebar Navigation -->
+<nav id="sidebar" class="col-md-3 col-lg-2 d-md-block sidebar">
+  <div class="position-sticky">
+    <div class="text-center mt-3">
+      <img src="/imgs/MusRoom.png" alt="logo" width="100px" />
+      <h3>MusRoom</h3>
+      <span>Private Lessons Workshop</span>
     </div>
-  </nav>
-</div>
+    <hr />
+    <ul class="nav flex-column">
+      <!-- Sidebar items -->
+      <li class="nav-item">
+        <a class="nav-link" href="/profile/teacher"> My Profile </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/tasksFeed"> All Tasks </a>
+      </li>
+      <!-- Add more sidebar items as needed -->
+      <li class="nav-item">
+        <a class="nav-link" href="#"> My Agenda </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#"> My Students </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#"> Tuner </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#"> Metronome </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#"> Documents </a>
+      </li>
+    </ul>
+  </div>
+</nav>
