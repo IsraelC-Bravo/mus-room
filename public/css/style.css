@@ -15,11 +15,6 @@ main {
 }
 
 /* Custom CSS to style the toggle button */
-.sidebar-toggle {
-  max-width: 40px;
-  margin-left: 10px;
-  margin-top: 10px;
-}
 
 /* Custom CSS to collapse the UL when the button is clicked */
 
