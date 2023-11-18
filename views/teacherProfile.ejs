@@ -2,24 +2,15 @@
 <div class="container-fluid">
   <div class="row">
     <!--SideBar-->
-    <%- include('partials/sidebar') -%>
+    <%- include('partials/sidebarT') -%>
 
     <!--Main Content-->
     <main class="col-md-9 col-lg10-px-md-4 mt-4">
+      <%- include('partials/navbar') -%>
+      <br />
       <div class="container">
         <div class="row">
           <div class="col-12">
-            <!--DISPLAY USER'S INFO-->
-            <div>
-              <p><strong>User Name</strong>: <%= user.userName %></p>
-              <p><strong>Email</strong>: <%= user.email %></p>
-              <p><strong>Role</strong>: <%= user.role %></p>
-              <!--Class Code-->
-              <p><strong>Class Code</strong>: <%= user.classCode %></p>
-              <!--LOGOUT-->
-              <a href="/logout" class="col-3 mb-5 btn btn-primary">Logout</a>
-            </div>
-
             <!--Fetch Students-->
             <div class="col-6">
               <h4>Students in My Class</h4>
