@@ -12,11 +12,12 @@
 
     <!--DISPLAY USER'S INFO-->
     <div>
-      <p><strong>Email</strong>: <%= user.email %></p>
-      <p><strong>User</strong>: <%= user.userName %></p>
-      <p><strong>Role</strong>: <%= user.role %></p>
+      <p><strong>name</strong>: <%= user.lastName %> <%= user.firstName %></p>
+      <p><strong>username</strong>: <%= user.userName %></p>
+      <p><strong>email</strong>: <%= user.email %></p>
+      <p><strong>role</strong>: <%= user.role %></p>
       <!--Class Code-->
-      <p><strong>Class Code</strong>: <%= user.classCode %></p>
+      <p><strong>class code</strong>: <%= user.classCode %></p>
       <!--LOGOUT-->
       <a href="/logout" class="col-3 mb-5 btn btn-primary logout">Logout</a>
     </div>
