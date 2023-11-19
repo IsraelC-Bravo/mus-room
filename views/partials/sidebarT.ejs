@@ -1,0 +1,25 @@
+<!-- sidebar.ejs -->
+
+<!-- Sidebar Navigation -->
+<nav id="sidebar" class="col-md-3 col-lg-2 d-md-block sidebar">
+  <div class="position-sticky">
+    <div class="text-center mt-3">
+      <img src="/imgs/MusRoom.png" alt="logo" width="100px" />
+      <h3>MusRoom</h3>
+      <span>Private Lessons Workshop</span>
+    </div>
+    <hr />
+
+    <!--DISPLAY USER'S INFO-->
+    <div>
+      <p><strong>name</strong>: <%= user.lastName %> <%= user.firstName %></p>
+      <p><strong>username</strong>: <%= user.userName %></p>
+      <p><strong>email</strong>: <%= user.email %></p>
+      <p><strong>role</strong>: <%= user.role %></p>
+      <!--Class Code-->
+      <p><strong>class code</strong>: <%= user.classCode %></p>
+      <!--LOGOUT-->
+      <a href="/logout" class="col-3 mb-5 btn btn-primary logout">Logout</a>
+    </div>
+  </div>
+</nav>
