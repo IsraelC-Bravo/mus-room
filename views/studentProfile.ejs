@@ -1,62 +1,42 @@
 <%- include('partials/header') -%>
-<div class="container">
-  <div class="row mt-5">
-    <div class="col-6">
-      <div>
-        <!--DISPLAY USER'S INFO-->
-        <p><strong>User Name</strong>: <%= user.userName %></p>
-        <p><strong>Email</strong>: <%= user.email %></p>
-        <p><strong>Role</strong>: <%= user.role %></p>
-        <!--Display Class Joined for students-->
-        <% if (user.classCode && teacherName) { %>
-        <p><strong>Class Joined</strong>: <%= user.classCode %></p>
-        <p><strong>Teacher</strong>: <%= teacherName %></p>
-        <% } else { %>
-        <!--Join a Class Button-->
-        <form action="/post/joinClass" method="POST">
-          <div class="mb-3">
-            <label for="joinClass" class="form-label">
-              <strong>Join a Class:</strong>
-            </label>
-            <div class="input-group custom-input-group">
-              <input
-                type="text"
-                class="form-control"
-                id="joinClass"
-                name="joinClass"
-                placeholder="Enter Class Code"
-              />
-              <button type="submit" class="btn btn-primary">Join</button>
+<div class="container-fluid">
+  <div class="row">
+    <!--SideBar-->
+    <%- include('partials/sidebarT') -%>
+
+    <!--Main Content-->
+    <main class="col-md-9 col-lg10-px-md-4 mt-4">
+      <%- include('partials/navbar') -%>
+      <br />
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+            <!-- Display Tasks for students -->
+            <div class="col-6">
+              <h2>Asigned Tasks</h2>
+              <ul class="row list-unstyled tasksDisplay">
+                <% for (let i = 0; i < assignedTasks.length; i++) { %>
+                <li class="col-6 justify-content-between mt-5">
+                  <a href="/post/<%= assignedTasks[i]._id %>">
+                    <img
+                      class="img-fluid"
+                      src="<%= assignedTasks[i].image %>"
+                      alt="Task Image"
+                    />
+                  </a>
+                  <p><strong>Assigned by: </strong><%= teacherName %></p>
+                </li>
+                <% } %>
+              </ul>
+              <div class="row justify-content-center mt-5">
+                <a class="btn btn-primary" href="/tasksFeed">All My Tasks</a>
+              </div>
             </div>
           </div>
-        </form>
-        <% } %>
-        <!--LOGOUT-->
-        <a href="/logout" class="col-3 btn btn-primary">Logout</a>
+        </div>
       </div>
-    </div>
-
-    <!-- Display Tasks for students -->
-    <div class="col-6">
-      <h2>Asigned Tasks</h2>
-      <ul class="row list-unstyled tasksDisplay">
-        <% for (let i = 0; i < assignedTasks.length; i++) { %>
-        <li class="col-6 justify-content-between mt-5">
-          <a href="/post/<%= assignedTasks[i]._id %>">
-            <img
-              class="img-fluid"
-              src="<%= assignedTasks[i].image %>"
-              alt="Task Image"
-            />
-          </a>
-          <p><strong>Assigned by: </strong><%= teacherName %></p>
-        </li>
-        <% } %>
-      </ul>
-      <div class="row justify-content-center mt-5">
-        <a class="btn btn-primary" href="/tasksFeed">All My Tasks</a>
-      </div>
-    </div>
+    </main>
   </div>
 </div>
+
 <%- include('partials/footer') -%>

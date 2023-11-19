@@ -23,7 +23,6 @@ main {
 .btn-primary {
   background-color: coral;
   border: none;
-  width: 100%;
 }
 
 .btn:hover,

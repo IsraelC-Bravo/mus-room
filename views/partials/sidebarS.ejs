@@ -1,0 +1,44 @@
+<!-- sidebar.ejs -->
+
+<!-- Sidebar Navigation -->
+<nav id="sidebar" class="col-md-3 col-lg-2 d-md-block sidebar">
+  <div class="position-sticky">
+    <div class="text-center mt-3">
+      <img src="/imgs/MusRoom.png" alt="logo" width="100px" />
+      <h3>MusRoom</h3>
+      <span>Private Lessons Workshop</span>
+    </div>
+    <hr />
+
+    <!--DISPLAY USER'S INFO-->
+    <p><strong>User Name</strong>: <%= user.userName %></p>
+    <p><strong>Email</strong>: <%= user.email %></p>
+    <p><strong>Role</strong>: <%= user.role %></p>
+    <!--Display Class Joined for students-->
+    <% if (user.classCode && teacherName) { %>
+    <p><strong>Class Joined</strong>: <%= user.classCode %></p>
+    <p><strong>Teacher</strong>: <%= teacherName %></p>
+    <% } else { %>
+    <!--Join a Class Button-->
+    <form action="/post/joinClass" method="POST">
+      <div class="mb-3">
+        <label for="joinClass" class="form-label">
+          <strong>Join a Class:</strong>
+        </label>
+        <div class="input-group custom-input-group">
+          <input
+            type="text"
+            class="form-control"
+            id="joinClass"
+            name="joinClass"
+            placeholder="Enter Class Code"
+          />
+          <button type="submit" class="btn btn-primary">Join</button>
+        </div>
+      </div>
+    </form>
+    <% } %>
+    <!--LOGOUT-->
+    <a href="/logout" class="col-3 btn btn-primary">Logout</a>
+  </div>
+</nav>
