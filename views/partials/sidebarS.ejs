@@ -11,8 +11,8 @@
     <hr />
 
     <!--DISPLAY USER'S INFO-->
-    <p><strong>User Name</strong>: <%= user.userName %></p>
     <p><strong>Email</strong>: <%= user.email %></p>
+    <p><strong>User</strong>: <%= user.userName %></p>
     <p><strong>Role</strong>: <%= user.role %></p>
     <!--Display Class Joined for students-->
     <% if (user.classCode && teacherName) { %>
@@ -33,12 +33,12 @@
             name="joinClass"
             placeholder="Enter Class Code"
           />
-          <button type="submit" class="btn btn-primary">Join</button>
+          <button type="submit" class="btn btn-primary joinClass">Join</button>
         </div>
       </div>
     </form>
     <% } %>
     <!--LOGOUT-->
-    <a href="/logout" class="col-3 btn btn-primary">Logout</a>
+    <a href="/logout" class="col-3 btn btn-primary logout">Logout</a>
   </div>
 </nav>

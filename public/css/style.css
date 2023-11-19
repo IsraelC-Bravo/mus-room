@@ -7,6 +7,10 @@ main {
   padding-bottom: 20px;
 }
 
+.footer {
+  max-height: 50px;
+}
+
 /* SIDEBAR */
 
 #sidebar {
@@ -27,6 +31,26 @@ main {
 
 .btn:hover,
 .btn-primary:hover {
+  background-color: chocolate;
+}
+
+.logout {
+  background-color: coral;
+  border: none;
+  width: 100%;
+}
+
+.logout:hover {
+  background-color: chocolate;
+}
+
+.joinClass {
+  background-color: coral;
+  border: none;
+  width: 100%;
+}
+
+.joinClass:hover {
   background-color: chocolate;
 }
 
