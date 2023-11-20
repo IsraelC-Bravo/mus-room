@@ -17,7 +17,10 @@
               <ul class="row list-unstyled studentsDisplay">
                 <% for(let i = 0; i < students.length; i++) {%>
                 <li class="col-3 justify-content-between mt-3">
-                  <a href="/profile/student/<%= students[i]._id %>">
+                  <a
+                    href="/profile/student/<%= students[i]._id %>"
+                    class="text-decoration-none text-dark"
+                  >
                     <img
                       class="image-fluid"
                       src="/imgs/user-icon.png"

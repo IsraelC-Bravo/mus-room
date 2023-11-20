@@ -66,3 +66,22 @@ main {
 .studentsDisplay {
   text-align: center;
 }
+
+/* Navbar links */
+.nav-link {
+  color: coral; /* text color */
+}
+
+.nav-link:hover {
+  color: chocolate; /* hover color */
+  text-decoration: underline;
+}
+
+/* Custom styling for the underlined links */
+.text-decoration-none {
+  text-decoration: none;
+}
+
+.text-dark {
+  color: #343a40 !important;
+}
