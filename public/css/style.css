@@ -47,6 +47,7 @@ main {
 .joinClass {
   background-color: coral;
   border: none;
+  border-radius: 5px;
   width: 100%;
 }
 
