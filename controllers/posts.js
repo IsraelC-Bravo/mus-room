@@ -70,7 +70,7 @@ module.exports = {
         teacherName: teacherName,
         posts: posts,
         assignedTasks: assignedTasks, //pass this only for teacher profiles
-        isTeacher: isTeacher, //set isTeacher outside the try block
+        isTeacher: isTeacher, //set isTeacher outside the try block.
       });
     } catch (err) {
       console.log(err);
