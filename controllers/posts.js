@@ -152,7 +152,7 @@ module.exports = {
           role: "Teacher",
         });
 
-        if (teahcer) {
+        if (teacher) {
           teacherName = `${teacher.lastName} ${teacher.firstName}`;
         }
       }
