@@ -119,21 +119,55 @@ module.exports = {
   //Get Individual Task
   getTask: async (req, res) => {
     try {
-      const post = await Post.findById(req.params.id).populate(
-        "user",
-        "userName"
-      );
-      const comments = await Comment.find({ post: req.params.id })
+      const postId = req.params.id;
+
+      //Populate the post with user information
+      const post = await Post.findById(postId)
+        .populate({
+          path: "user",
+          select: "userName role classCode", //Include classCode for students
+        })
+        .exec();
+
+      if (!post) {
+        //handle the case where the post is not found
+        return res
+          .status(404)
+          .render("error.ejs", { message: "Post not found" });
+      }
+
+      //Fetch comments fot the post
+      const comments = await Comment.find({ post: postId })
         .populate("user", "userName") // Populate the user property for comments
         .sort({ createdAt: "desc" })
         .lean();
+
+      //Initialize teacherName variable
+      let teacherName = "";
+
+      //Fetch teacher's information if user is a student
+      if (post.user.role === "Student" && post.user.classCode) {
+        const teacher = await User.findOne({
+          classCode: post.user.classCode,
+          role: "Teacher",
+        });
+
+        if (teahcer) {
+          teacherName = `${teacher.lastName} ${teacher.firstName}`;
+        }
+      }
+
+      //render the task page
       res.render("task.ejs", {
         post: post,
         user: req.user,
         comments: comments,
+        teacherName: teacherName, //pass the teacherName to the template
       });
     } catch (err) {
       console.log(err);
+      //Hanlde other errors
+      res.status(500).render("error.ejs", { message: "Internal Server Error" });
     }
   },
   //Create a new Task (Teacher Only)

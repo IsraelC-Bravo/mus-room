@@ -1,68 +1,88 @@
-<%- include("partials/header") -%>
-<div class="container">
-  <div class="row justify-content-between mt-5">
-    <div class="col-5">
-      <h2>Title: <%= post.title %></h2>
-      <h5>Added By: <%= post.user.userName %></h5>
-      <img
-        class="img-fluid mt-3"
-        src="<%= post.image %>"
-        alt="task image"
-        width="300px"
-      />
-      <div class="row justify-content-between mt-3">
-        <form
-          class="col-1"
-          action="/post/likeTask/<%= post.id %>?_method=PUT"
-          method="POST"
-        >
-          <button class="btn btn-primary" type="submit">
-            <i class="fas fa-heart"><%= post.likes %></i>
-          </button>
-        </form>
-        <% if(post.user.userName === user.userName) { %>
-        <form
-          class="col-5"
-          action="/post/deleteTask/<%= post.id %>?_method=DELETE"
-          method="POST"
-        >
-          <button class="btn btn-primary" type="submit">
-            <i class="fas fa-trash"></i>
-          </button>
-        </form>
-        <% } %>
+<%- include('partials/header') -%>
+<div class="container-fluid">
+  <div class="row">
+    <% if (user.role === 'Teacher') { %> <%- include("partials/sidebarT") -%>
+    <!-- Include the teacher sidebar, adjust as needed -->
+    <%- include("partials/navbarT") -%>
+    <!-- Include the teacher navbar, adjust as needed -->
+    <% } else { %> <%- include("partials/sidebarS") -%>
+    <!-- Include the student sidebar, adjust as needed -->
+    <%- include("partials/navbarS") -%>
+    <!-- Include the student navbar, adjust as needed -->
+    <% } %>
+
+    <!--Main Content-->
+    <div class="container">
+      <div class="row justify-content-between mt-5">
+        <div class="col-5">
+          <h2>Title: <%= post.title %></h2>
+          <h5>Added By: <%= post.user.userName %></h5>
+          <img
+            class="img-fluid mt-3"
+            src="<%= post.image %>"
+            alt="task image"
+            width="300px"
+          />
+          <div class="row justify-content-between mt-3">
+            <form
+              class="col-1"
+              action="/post/likeTask/<%= post.id %>?_method=PUT"
+              method="POST"
+            >
+              <button class="btn btn-primary" type="submit">
+                <i class="fas fa-heart"><%= post.likes %></i>
+              </button>
+            </form>
+            <% if(post.user.userName === user.userName) { %>
+            <form
+              class="col-5"
+              action="/post/deleteTask/<%= post.id %>?_method=DELETE"
+              method="POST"
+            >
+              <button class="btn btn-primary" type="submit">
+                <i class="fas fa-trash"></i>
+              </button>
+            </form>
+            <% } %>
+          </div>
+        </div>
+        <div class="col-5 mt-5">
+          <h4>Instructions:</h4>
+          <p><%= post.caption %></p>
+        </div>
+        <div class="mt-5">
+          <h4>Comments:</h4>
+          <ul>
+            <% for(let i = 0; i < comments.length; i++) { %>
+            <li class="justify-content-between mt-2">
+              <!-- Output the user object for debugging -->
+              <% if (comments[i].user) { %>
+              <strong><%= comments[i].user.userName %>:</strong>
+              <% } %> <%= comments[i].comment %>
+            </li>
+            <% } %>
+          </ul>
+          <h4>Add a comment</h4>
+          <form action="/comment/createComment/<%=post._id%>" method="POST">
+            <div class="mb-3">
+              <label for="comment" class="form-label">Comment</label>
+              <input
+                type="text"
+                class="form-control"
+                id="comment"
+                name="comment"
+              />
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
+        </div>
+
+        <div class="col-6 mt-5">
+          <a class="btn btn-primary" href="/profile">Return to Profile</a>
+          <a class="btn btn-primary" href="/tasksFeed">Return to Task Feed</a>
+        </div>
       </div>
     </div>
-    <div class="col-5 mt-5">
-      <h4>Instructions:</h4>
-      <p><%= post.caption %></p>
-    </div>
-    <div class="mt-5">
-      <h4>Comments:</h4>
-      <ul>
-        <% for(let i = 0; i < comments.length; i++) { %>
-        <li class="justify-content-between mt-2">
-          <!-- Output the user object for debugging -->
-          <% if (comments[i].user) { %>
-          <strong><%= comments[i].user.userName %>:</strong>
-          <% } %> <%= comments[i].comment %>
-        </li>
-        <% } %>
-      </ul>
-      <h4>Add a comment</h4>
-      <form action="/comment/createComment/<%=post._id%>" method="POST">
-        <div class="mb-3">
-          <label for="comment" class="form-label">Comment</label>
-          <input type="text" class="form-control" id="comment" name="comment" />
-        </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
-      </form>
-    </div>
-
-    <div class="col-6 mt-5">
-      <a class="btn btn-primary" href="/profile">Return to Profile</a>
-      <a class="btn btn-primary" href="/tasksFeed">Return to Task Feed</a>
-    </div>
+    <%- include("partials/footer") -%>
   </div>
 </div>
-<%- include("partials/footer") -%>
